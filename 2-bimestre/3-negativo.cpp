@@ -1,4 +1,5 @@
-#include using namespace std;
+#include <iostream>
+using namespace std;
 
 int main() { int numero, soma = 0;
 
