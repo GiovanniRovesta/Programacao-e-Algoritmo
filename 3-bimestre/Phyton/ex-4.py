@@ -7,4 +7,6 @@ if n > 0:
         if contador % 2 == 0:
             soma = contador + soma
         contador += 1
-print(f'A soma dos pares é: {soma}')
+    print(f'A soma dos pares é: {soma}')
+else:
+    print('Número inválido')
