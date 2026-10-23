@@ -1,51 +1,58 @@
 pessoas = []
-tokens = []
-dinheiro = []
-horas = []
+usuario_atual = None
+
 
 def cadastrar_usuario():
+    global usuario_atual
+
     usuario = input("Coloque seu nome: ")
     idade = int(input("Coloque sua idade: "))
     if idade <= 12:
         print("Você é novo demais, procure seus responsáveis")
         return
 
-    pessoas.append(pessoa)
-    print("Você foi cadastrado, pode prosseguir")
-
     dinheiro = float(input("Coloque seu dinheiro: "))
-    if dinheiro > 0:
-        print("Compre os tokens com esse dinheiro!")
-    else:
+    if dinheiro <= 0:
         print("Quantidade inválida")
+        return
+
 
     pessoa = {
         "usuario": usuario,
         "idade": idade,
-        "dinheiro": dinheiro
+        "dinheiro": dinheiro,
+        "tokens": 0,
+        "horas": 0
     }
+    pessoas.append(pessoa)
+    usuario_atual = pessoa
 
-def comprar_tokens():
+    print("Você foi cadastrado, pode prosseguir")
+    print("Compre os tokens com esse dinheiro!")
+
+
+def comprar_tokens(pessoa):
     token = int(input("Quantos tokens você quer comprar? "))
-    if dinheiro >= 2*token:
+    if pessoa["dinheiro"] >= 2 * token:
+        pessoa["dinheiro"] -= 2 * token
+        pessoa["tokens"] += token
         print("Você comprou tokens!")
-        saldo = pessoas['dinheiro'] - 2*token
     else:
         print("Você não tem dinheiro para comprar essa quantidade")
-    
 
 
 def main():
-    load_data()
 
     while True:
-        mostrar_menu()
         option = input("Escolha uma opção: ")
 
         if option == "1":
             cadastrar_usuario()
         elif option == "2":
-            comprar_tokens()
+            if usuario_atual is None:
+                print("Cadastre-se primeiro.")
+            else:
+                comprar_tokens(usuario_atual)
         elif option == "3":
             quantidade_tokens()
         elif option == "4":
