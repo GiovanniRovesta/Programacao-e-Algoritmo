@@ -110,6 +110,9 @@ def main():
             horas_jogaveis(usuario_atual)
         elif option == "5":
             jogos_disponiveis(usuario_atual)
+        elif option == "7":
+            print("Você saiu com êxito")
+            break
         else:
             print("Opção inválida.")
 
